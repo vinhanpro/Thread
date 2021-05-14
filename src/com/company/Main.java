@@ -11,7 +11,7 @@ public class Main {
             ExecutorService executorService = Executors.newSingleThreadExecutor();
 
             // Khai báo 10 Runnable, và "quăng" chúng vào Thread Pool vừa khai báo
-            for (int i = 1; i <= 10; i++) {
+            for (int i = 1; i <= 5; i++) {
                 MyRunnable myRunnable = new MyRunnable("Runnable " + i);
                 executorService.execute(myRunnable);
             }
