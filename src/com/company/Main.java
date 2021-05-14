@@ -27,7 +27,7 @@ public class Main {
                 // Khi Thread nào kết thúc, get() của Future tương ứng sẽ trả về kết quả mà Callable return
                 System.out.println(future.get() + " kết thúc");
             } catch (ExecutionException e) {
-                // TODO Auto-generated catch block
+
                 e.printStackTrace();
             }
         }
