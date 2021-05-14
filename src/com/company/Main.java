@@ -8,8 +8,7 @@ public class Main {
 
         public static void main(String[] args) {
             // Khai báo một Thread Pool thông qua newSingleThreadExecutor() của Executors
-            ExecutorService executorService = Executors.newSingleThreadExecutor();
-
+            ExecutorService executorService = Executors.newCachedThreadPool();
             // Khai báo 10 Runnable, và "quăng" chúng vào Thread Pool vừa khai báo
             for (int i = 1; i <= 5; i++) {
                 MyRunnable myRunnable = new MyRunnable("Runnable " + i);
