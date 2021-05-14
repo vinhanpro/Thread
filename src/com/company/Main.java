@@ -12,19 +12,20 @@ public class Main {
 
     public static void main(String[] args) throws InterruptedException {
         ExecutorService executorService = Executors.newFixedThreadPool(5);
-        List<Future> listFuture = new ArrayList<Future>(); // Khởi tạo danh sách các Future
+        List<Future<String>> listFuture = new ArrayList<Future<String>>(); // Khởi tạo danh sách các Future
 
         for (int i = 1; i <= 10; i++) {
-            MyRunnable myRunnable = new MyRunnable("Runnable " + i);
-            // Bước này chúng ta dùng submit() thay vì execute()
-            Future future = executorService.submit(myRunnable);
-            listFuture.add(future); // Từng Future sẽ quản lý một Runnable
+            // Dùng Callable thay cho Runnable
+            MyCallable myCallable = new MyCallable("Callable " + i);
+
+            Future<String> future = executorService.submit(myCallable);
+            listFuture.add(future); // Từng Future sẽ quản lý một Callable
         }
 
         for (Future future : listFuture) {
             try {
-                // Khi Thread nào kết thúc, get() của Future tương ứng sẽ trả về null
-                System.out.println(future.get());
+                // Khi Thread nào kết thúc, get() của Future tương ứng sẽ trả về kết quả mà Callable return
+                System.out.println(future.get() + " kết thúc");
             } catch (ExecutionException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
